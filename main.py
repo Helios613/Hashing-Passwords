@@ -1,0 +1,25 @@
+import cryptography
+from cryptography.fernet import Fernet
+
+# key=Fernet.generate_key()
+# print("Key=",key)
+# file=open('key.key', 'wb')
+# file.write(key)
+# file.close()
+file = open('key.key', 'rb') # rb = read bytes
+key  = file.read()
+file.close()
+# print (key)
+fernet=Fernet(key)
+
+name = "piyush"
+
+name=(fernet.encrypt(name.encode())).decode('utf-8')
+
+print(name)
+
+name = fernet.decrypt(name.encode()).decode('utf-8')
+
+name=(fernet.encrypt(name.encode())).decode('utf-8')
+
+print(name)
